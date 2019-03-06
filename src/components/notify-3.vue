@@ -32,9 +32,10 @@ export default {
 
   mounted () {
     if (this.type) {
-      Object.keys(notifications[this.type]).forEach(property => {
-        this.$el.style.setProperty(property, notifications[this.type][property]);
-        this.icon = notifications[this.type].icon;
+      this.icon = notifications[this.type].icon;
+
+      Object.keys(notifications[this.type].tokens).forEach(property => {
+        this.$el.style.setProperty(property, notifications[this.type].tokens[property]);
       });
     }
   }

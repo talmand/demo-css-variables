@@ -1,22 +1,30 @@
 {
   "positive": {
     "icon": "plus-circle",
-    "--background-color": "#307B21",
-    "--border-color": "#307B21"
+    "tokens": {
+      "--background-color": "#307B21",
+      "--border-color": "#307B21"
+    }
   },
   "negative": {
     "icon": "minus-circle",
-    "--background-color": "#C11826",
-    "--border-color": "#C11826"
+    "tokens": {
+      "--background-color": "#C11826",
+      "--border-color": "#C11826"
+    }
   },
   "warning": {
     "icon": "exclamation-circle",
-    "--background-color": "#C45413",
-    "--border-color": "#C45413"
+    "tokens": {
+      "--background-color": "#C45413",
+      "--border-color": "#C45413"
+    }
   },
   "info": {
     "icon": "question-circle",
-    "--background-color": "#4371AD",
-    "--border-color": "#4371AD"
+    "tokens": {
+      "--background-color": "#4371AD",
+      "--border-color": "#4371AD"
+    }
   }
 }

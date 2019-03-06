@@ -1,25 +1,14 @@
 <template>
 <div class="demo">
-  <div class="edit-container">
-    <button class="edit" @click="editNotify('positive')"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-    <Notify4 ref="positive" type="positive">this is positive</Notify4>
-  </div>
-  <div class="edit-container">
-    <button class="edit" @click="editNotify('negative')"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-    <Notify4 type="negative">this is negative</Notify4>
-  </div>
-  <div class="edit-container">
-    <button class="edit" @click="editNotify('warning')"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-    <Notify4 type="warning">this is warning</Notify4>
-  </div>
-  <div class="edit-container">
-    <button class="edit" @click="editNotify('info')"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-    <Notify4 type="info">this is info</Notify4>
+  <div v-for="(key, value) in notifications" :key="value" class="edit-container">
+    <button class="edit" @click="editNotify('value')"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
+    <Notify4 :ref="value" :type="value">this is {{ value }}</Notify4>
   </div>
 </div>
 </template>
 
 <script>
+import notifications from '@/assets/notifications-4.json'
 import Notify4 from '@/components/notify-4.vue';
 
 export default {
@@ -27,6 +16,12 @@ export default {
 
   components: {
     Notify4
+  },
+
+  data() {
+    return {
+      notifications
+    }
   },
 
   methods: {

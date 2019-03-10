@@ -1,20 +1,35 @@
 <template>
 <div class="demo">
   <div v-for="(key, value) in $notifications4" :key="value" class="edit-container">
-    <Notify4 :ref="value" :type="value">this is {{ value }}</Notify4>
+    <button class="edit" @click="editNotify(value)"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
+    <Notify5 :ref="value" :type="value">this is {{ value }}</Notify5>
   </div>
 </div>
 </template>
 
 <script>
-import Notify4 from '@/components/notify-4.vue';
+import Notify5 from '@/components/notify-5.vue';
 
 export default {
-  name: 'demo-4',
+  name: 'demo-5',
 
   components: {
-    Notify4
-  }
+    Notify5
+  },
+
+  data() {
+    return {
+      
+    }
+  },
+
+  methods: {
+    editNotify (type) {
+      this.$parent.showThemePanel = true;
+      this.$parent.editType = type;
+      this.$parent.editTarget = this.$refs[type][0].$el;
+    }
+  },
 }
 </script>
 

@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import notifications from '@/assets/notifications-3.json'
-
 export default {
   name: 'notify-3',
 
@@ -32,10 +30,10 @@ export default {
 
   mounted () {
     if (this.type) {
-      this.icon = notifications[this.type].icon;
+      this.icon = this.$notifications3[this.type].icon;
 
-      Object.keys(notifications[this.type].tokens).forEach(property => {
-        this.$el.style.setProperty(property, notifications[this.type].tokens[property]);
+      Object.keys(this.$notifications3[this.type].tokens).forEach(property => {
+        this.$el.style.setProperty(property, this.$notifications3[this.type].tokens[property]);
       });
     }
   }

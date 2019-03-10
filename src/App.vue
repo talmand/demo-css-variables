@@ -19,10 +19,10 @@
         <div id="properties">
           <div>
             <label for="icon">icon</label>
-            <input id="icon" :type="inputType('icon')" :value="notifications[editType].icon" @change="changeProperty" />
+            <input id="icon" :type="inputType('icon')" :value="$notifications4[editType].icon" @change="changeProperty" />
           </div>
         
-          <div v-for="(value, key) in notifications[editType].tokens" :key="key">
+          <div v-for="(value, key) in $notifications4[editType].tokens" :key="key">
             <label :for="key">{{ key }}</label>
             <input :id="key" :type="inputType(key)" :value="value" @change="changeProperty" />
           </div>
@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import notifications from '@/assets/notifications-4.json'
 import Demo1 from '@/components/demo-1.vue';
 import Demo2 from '@/components/demo-2.vue';
 import Demo3 from '@/components/demo-3.vue';
 import Demo4 from '@/components/demo-4.vue';
+import Demo5 from '@/components/demo-5.vue';
 
 export default {
   name: 'app',
@@ -57,19 +57,19 @@ export default {
     Demo1,
     Demo2,
     Demo3,
-    Demo4
+    Demo4,
+    Demo5
   },
 
   data () {
     return {
-      notifications: notifications,
       currentComponent: 'Demo1',
       showThemePanel: false,
       types: [],
       icon: '',
       editType: 'positive',
       editTarget: null,
-      demos: ['Demo1', 'Demo2', 'Demo3', 'Demo4'],
+      demos: ['Demo1', 'Demo2', 'Demo3', 'Demo4', 'Demo5'],
       currentSlide: 'slide-left'
     }
   },
@@ -122,7 +122,7 @@ export default {
   },
 
   mounted () {
-    Object.keys(notifications).forEach(type => {
+    Object.keys(this.$notifications4).forEach(type => {
       this.types.push(type);
     });
 

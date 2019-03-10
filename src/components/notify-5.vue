@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'notify-4',
+  name: 'notify-5',
 
   props: {
     type: {

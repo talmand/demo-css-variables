@@ -5,8 +5,6 @@
   </div>
   <div class="content">
     <div class="text"><slot></slot></div>
-    <button class="cancel">cancel</button>
-    <button class="continue">continue</button>
   </div>
 </div>
 </template>
@@ -49,9 +47,10 @@ export default {
     style: var(--notify_border-style);
     width: var(--notify_border-width);
   }
+  border-right-width: 16px;
   flex-grow: 1;
   margin: var(--notify_margin);
-  min-height: 48px;
+  min-height: 64px;
   overflow: hidden;
   transition: 0.5s;
 }
@@ -80,48 +79,5 @@ export default {
   flex-grow: 1;
   font-size: var(--text_font-size);
   padding: 0 16px;
-}
-
-.cancel,
-.continue {
-  align-items: center;
-  appearance: none;
-  cursor: pointer;
-  margin: 4px;
-  transition: 0.5s;
-}
-.cancel {
-  background-color: var(--cancel_background-color);
-  border: {
-    color: var(--cancel_border-color);
-    style: var(--cancel_border-style);
-    width: var(--cancel_border-width);
-  }
-  border-radius: var(--cancel_border-radius);
-  color: var(--cancel_color);
-  font-weight: var(--cancel_font-weight);
-
-  &:hover {
-    background-color: var(--cancel_hover_background-color);
-    border-color: var(--cancel_hover_border-color);
-    color: var(--cancel_hover_color);
-  }
-}
-.continue {
-  background-color: var(--continue_background-color);
-  border: {
-    color: var(--continue_border-color);
-    style: var(--continue_border-style);
-    width: var(--continue_border-width);
-  }
-  border-radius: var(--continue_border-radius);
-  color: var(--continue_color);
-  font-weight: var(--continue_font-weight);
-
-  &:hover {
-    background-color: var(--continue_hover_background-color);
-    border-color: var(--continue_hover_border-color);
-    color: var(--continue_hover_color);
-  }
 }
 </style>

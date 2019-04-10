@@ -80,7 +80,7 @@ export default {
       let value = e.target.value;
       
       if (key === 'icon') {
-        this.$refs.components.$refs[this.editType].icon = value;
+        this.$refs.components.$refs[this.editType][0].icon = value;
       } else {
         this.editTarget.style.setProperty(key, value);
       }
@@ -115,7 +115,7 @@ export default {
 
   watch: {
     currentComponent: function () {
-      if (this.currentComponent !== 'Demo4') {
+      if (this.currentComponent !== 'Demo5') {
         this.showThemePanel = false;
       }
     }

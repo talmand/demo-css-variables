@@ -5,8 +5,6 @@
   </div>
   <div class="content">
     <div class="text"><slot></slot></div>
-    <button class="cancel">cancel</button>
-    <button class="continue">continue</button>
   </div>
 </div>
 </template>
@@ -39,10 +37,11 @@ $info: #4371AD;
   border: {
     radius: 4px;
     style: solid;
-    width: 4px;
+    width: 6px;
   }
+  border-right-width: 16px;
   margin: 20px;
-  min-height: 48px;
+  min-height: 64px;
   overflow: hidden;
 
   &.positive {
@@ -80,7 +79,7 @@ $info: #4371AD;
   color: #fff;
   display: flex;
   justify-content: center;
-  width: 48px;
+  width: 64px;
 
   svg {
     height: 24px;
@@ -97,28 +96,5 @@ $info: #4371AD;
   flex-grow: 1;
   font-size: 16px;
   padding: 0 16px;
-}
-
-.cancel,
-.continue {
-  align-items: center;
-  appearance: none;
-  background-color: #fff;
-  border: {
-    color: gray;
-    style: solid;
-    width: 2px;
-  }
-  border-radius: 4px;
-  color: gray;
-  cursor: pointer;
-  font-weight: 700;
-  margin: 4px;
-  transition: 0.5s;
-
-  &:hover {
-    background-color: darken(white, 10);
-    border-color: darken(gray, 10);
-  }
 }
 </style>

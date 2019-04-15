@@ -14,17 +14,20 @@
       <button class="toggle-panel" :class="{hide: !showThemePanel}" @click="showThemePanel = !showThemePanel">X</button>
 
       <div class="content">
+        <div>
+          <button @click="save">save</button>
+        </div>
         <label>{{ editType }}</label>
 
         <div id="properties">
           <div>
             <label for="icon">icon</label>
-            <input id="icon" :type="inputType('icon')" :value="$notifications4[editType].icon" @change="changeProperty" />
+            <input id="icon" :type="inputType('icon')" :value="$notifications4[editType].icon" v-model="$notifications4[editType].icon" @change="changeProperty" />
           </div>
         
           <div v-for="(value, key) in $notifications4[editType].tokens" :key="key">
             <label :for="key">{{ key }}</label>
-            <input :id="key" :type="inputType(key)" :value="value" @change="changeProperty" />
+            <input :id="key" :type="inputType(key)" :value="value" v-model="$notifications4[editType].tokens[key]" @input="changeProperty" />
           </div>
         </div>
       </div>
@@ -75,6 +78,18 @@ export default {
   },
 
   methods: {
+    save: function () {
+      let blob = new Blob([JSON.stringify(this.$notifications4, null, 2)], {type: 'text/plain;charset=utf-8'});
+      let a = document.createElement('a');
+      let url = URL.createObjectURL(blob);
+
+      a.href = url;
+      a.download = 'notifications-4.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    },
     changeProperty: function (e) {
       let key = e.target.id;
       let value = e.target.value;
@@ -278,7 +293,7 @@ body {
   select {
     margin: 10px;
     padding: 10px;
-    width: 200px;
+    width: 100%;
   }
 }
 #properties {
@@ -315,17 +330,13 @@ body {
   text-align: center;
 }
 
-.slide-left-enter { opacity: 0; transform: scale3d(2, 0.5, 1) translate3d(400px, 0, 0); }
-.slide-left-enter-to { transform: scale3d(1, 1, 1); }
+.slide-left-enter { opacity: 0; transform: translate3d(100px, 0, 0); }
 .slide-left-enter-active,
-.slide-left-leave-active { transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-.slide-left-leave { transform: scale3d(1, 1, 1); }
-.slide-left-leave-to { opacity: 0; transform: scale3d(2, 0.5, 1) translate3d(-400px, 0, 0); }
+.slide-left-leave-active { transition: 0.5s; }
+.slide-left-leave-to { opacity: 0; transform: translate3d(-100px, 0, 0); }
 
-.slide-right-enter { opacity: 0; transform: scale3d(2, 0.5, 1) translate3d(-400px, 0, 0); }
-.slide-right-enter-to { transform: scale3d(1, 1, 1); }
+.slide-right-enter { opacity: 0; transform: translate3d(-100px, 0, 0); }
 .slide-right-enter-active,
-.slide-right-leave-active { transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-.slide-right-leave { transform: scale3d(1, 1, 1); }
-.slide-right-leave-to { opacity: 0; transform: scale3d(2, 0.5, 1) translate3d(400px, 0, 0); }
+.slide-right-leave-active { transition: 0.5s; }
+.slide-right-leave-to { opacity: 0; transform: translate3d(100px, 0, 0); }
 </style>

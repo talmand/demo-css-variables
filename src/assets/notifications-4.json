@@ -1,5 +1,6 @@
 {
   "positive": {
+    "class": "positive",
     "icon": "plus-circle",
     "tokens": {
       "--notify_background-color": "#ffffff",
@@ -15,6 +16,7 @@
     }
   },
   "negative": {
+    "class": "negative",
     "icon": "minus-circle",
     "tokens": {
       "--notify_background-color": "#ffffff",
@@ -30,6 +32,7 @@
     }
   },
   "warning": {
+    "class": "warning",
     "icon": "exclamation-circle",
     "tokens": {
       "--notify_background-color": "#ffffff",
@@ -45,6 +48,7 @@
     }
   },
   "info": {
+    "class": "info",
     "icon": "question-circle",
     "tokens": {
       "--notify_background-color": "#ffffff",

@@ -1,5 +1,6 @@
 {
   "positive": {
+    "class": "positive",
     "icon": "plus-circle",
     "tokens": {
       "--background-color": "#307B21",
@@ -7,6 +8,7 @@
     }
   },
   "negative": {
+    "class": "negative",
     "icon": "minus-circle",
     "tokens": {
       "--background-color": "#C11826",
@@ -14,6 +16,7 @@
     }
   },
   "warning": {
+    "class": "warning",
     "icon": "exclamation-circle",
     "tokens": {
       "--background-color": "#C45413",
@@ -21,6 +24,7 @@
     }
   },
   "info": {
+    "class": "info",
     "icon": "question-circle",
     "tokens": {
       "--background-color": "#4371AD",

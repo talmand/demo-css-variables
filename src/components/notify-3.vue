@@ -1,7 +1,7 @@
 <template>
-<div class="notify" :class="type">
+<div class="notify" :class="type.class">
   <div class="icon">
-    <font-awesome-icon :icon="icon"></font-awesome-icon>
+    <font-awesome-icon :icon="type.icon"></font-awesome-icon>
   </div>
   <div class="content">
     <div class="text"><slot></slot></div>
@@ -14,26 +14,13 @@ export default {
   name: 'notify-3',
 
   props: {
-    type: {
-      type: String,
-      default: ''
-    }
-  },
-
-  data() {
-    return {
-      icon: 'question-circle'
-    }
+    type: Object
   },
 
   mounted () {
-    if (this.type) {
-      this.icon = this.$notifications3[this.type].icon;
-
-      Object.keys(this.$notifications3[this.type].tokens).forEach(property => {
-        this.$el.style.setProperty(property, this.$notifications3[this.type].tokens[property]);
-      });
-    }
+    Object.keys(this.type.tokens).forEach(property => {
+      this.$el.style.setProperty(property, this.type.tokens[property]);
+    });
   }
 }
 </script>

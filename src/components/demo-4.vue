@@ -1,12 +1,13 @@
 <template>
 <div class="demo">
-  <div v-for="(key, value) in $notifications4" :key="value" class="edit-container">
-    <Notify4 :ref="value" :type="value">this is {{ value }}</Notify4>
+  <div v-for="(key, value) in notifications" :key="value" class="edit-container">
+    <Notify4 :type="key">this is {{ value }}</Notify4>
   </div>
 </div>
 </template>
 
 <script>
+import notifications4 from '@/assets/notifications-4.json'
 import Notify4 from '@/components/notify-4.vue';
 
 export default {
@@ -14,6 +15,12 @@ export default {
 
   components: {
     Notify4
+  },
+
+  data () {
+    return {
+      notifications: notifications4
+    }
   }
 }
 </script>

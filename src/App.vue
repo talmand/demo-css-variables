@@ -10,28 +10,6 @@
   </div>
 
   <div id="container">
-    <div id="theme_panel" :class="{show: showThemePanel}">
-      <button class="toggle-panel" :class="{hide: !showThemePanel}" @click="showThemePanel = !showThemePanel">X</button>
-
-      <div class="content">
-        <div>
-          <button @click="save">save</button>
-        </div>
-        <label>{{ editType }}</label>
-
-        <div id="properties">
-          <div>
-            <label for="icon">icon</label>
-            <input id="icon" :type="inputType('icon')" :value="$notifications4[editType].icon" v-model="$notifications4[editType].icon" @change="changeProperty" />
-          </div>
-        
-          <div v-for="(value, key) in $notifications4[editType].tokens" :key="key">
-            <label :for="key">{{ key }}</label>
-            <input :id="key" :type="inputType(key)" :value="value" v-model="$notifications4[editType].tokens[key]" @input="changeProperty" />
-          </div>
-        </div>
-      </div>
-    </div>
     <div id="components">
       <transition :name="currentSlide" mode="out-in">
         <component ref="components" :is="currentComponent" />
@@ -67,10 +45,8 @@ export default {
   data () {
     return {
       currentComponent: 'Demo1',
-      showThemePanel: false,
       types: [],
       icon: '',
-      editType: 'positive',
       editTarget: null,
       demos: ['Demo1', 'Demo2', 'Demo3', 'Demo4', 'Demo5'],
       currentSlide: 'slide-left'
@@ -78,34 +54,6 @@ export default {
   },
 
   methods: {
-    save: function () {
-      let blob = new Blob([JSON.stringify(this.$notifications4, null, 2)], {type: 'text/plain;charset=utf-8'});
-      let a = document.createElement('a');
-      let url = URL.createObjectURL(blob);
-
-      a.href = url;
-      a.download = 'notifications-4.json';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    },
-    changeProperty: function (e) {
-      let key = e.target.id;
-      let value = e.target.value;
-      
-      if (key === 'icon') {
-        this.$refs.components.$refs[this.editType][0].icon = value;
-      } else {
-        this.editTarget.style.setProperty(key, value);
-      }
-    },
-    inputType: function (key) {
-      if (key.includes('color')) {
-        return 'color';
-      }
-      return 'text';
-    },
     changeHash: function (demo) {
       let currentDemoNumber = parseInt(window.location.hash.slice(-1));
       let nextDemoNumber = parseInt(demo.slice(-1));
@@ -128,19 +76,7 @@ export default {
     }
   },
 
-  watch: {
-    currentComponent: function () {
-      if (this.currentComponent !== 'Demo5') {
-        this.showThemePanel = false;
-      }
-    }
-  },
-
   mounted () {
-    Object.keys(this.$notifications4).forEach(type => {
-      this.types.push(type);
-    });
-
     this.getHash();
     window.addEventListener('hashchange', this.getHash);
   }
@@ -233,84 +169,7 @@ body {
   display: flex;
   flex-grow: 1;
 }
-#theme_panel {
-  background-color: #333;
-  border-right: {
-    color: rebeccapurple;
-    style: solid;
-    width: 7px;
-  }
-  height: 100vh;
-  position: relative;
-  transition: 0.5s;
-  width: 0;
 
-  &.show {
-    width: 250px;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    width: 100%;
-  }
-
-  .toggle-panel {
-    background: none;
-    border: {
-      color: #fff;
-      radius: 7px;
-      style: solid;
-      width: 1px;
-    }
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    font-size: 20px;
-    height: 40px;
-    line-height: 1;
-    opacity: 0.25;
-    position: absolute;
-    right: -70px;
-    top: 10px;
-    width: 40px;
-
-    &.hide {
-      display: none;
-    }
-  }
-
-  label {
-    color: #fff;
-    font-size: 16px;
-    margin: 10px 10px 0 10px;
-    width: 200px;
-  }
-  button,
-  select {
-    margin: 10px;
-    padding: 10px;
-    width: 100%;
-  }
-}
-#properties {
-  flex-direction: column;
-  padding: 20px 0;
-
-  & > div {
-    flex-direction: column;
-    flex-shrink: 0;
-  }
-  label {
-    font-size: 12px;
-  }
-  input {
-    margin: 0 10px;
-  }
-}
 #components {
   align-items: center;
   display: flex;

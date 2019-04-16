@@ -187,6 +187,10 @@ body {
   position: absolute;
   right: 0;
   text-align: center;
+
+  h2 {
+    margin: 0 0 10px;
+  }
 }
 
 .slide-left-enter { opacity: 0; transform: translate3d(100px, 0, 0); }

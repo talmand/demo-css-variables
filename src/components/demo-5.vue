@@ -23,15 +23,17 @@
     </div>
   </div>
 
-  <div v-for="(key, value) in notifications" :key="value" class="edit-container">
-    <button class="edit-btn" @click="editNotify(value)"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-    <Notify5 :ref="value" :type="key">this is {{ value }}</Notify5>
-  </div>
+  <transition-group name="list" tag="div" id="transition_group">
+    <div v-for="(key, value) in notifications" :key="value" class="edit-container">
+      <button class="edit-btn" @click="editNotify(value)"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
+      <Notify5 :ref="value" :type="key">this is {{ value }}</Notify5>
+    </div>
+  </transition-group>
 
   <div id="new_panel">
     <label for="new_name">name</label>
     <input id="new_name" v-model="newName" />
-    <button class="edit-btn" @click="newNotification"><font-awesome-icon icon="plus-circle"></font-awesome-icon><button>
+    <button class="new-btn edit-btn" @click="newNotification"><font-awesome-icon icon="plus-circle"></font-awesome-icon></button>
   </div>
 </div>
 </template>
@@ -106,6 +108,15 @@ export default {
       }
       return 'text';
     },
+    newNotification: function () {
+      if (this.newName) {
+        let temp = {};
+        temp[this.newName] = Object.assign(defaultNotification, temp);
+        temp[this.newName].class = this.newName;
+
+        this.notifications = Object.assign({}, this.notifications, temp);
+      }
+    }
   }
 }
 </script>
@@ -212,11 +223,33 @@ export default {
 }
 
 #new_panel {
+  align-items: center;
   color: #fff;
   justify-content: center;
-  margin: 20px;
+  margin: 0;
+
+  .new-btn {
+    padding: 10px;
+  }
 }
 #new_name {
   margin-left: 10px;
+  padding: 10px;
+}
+
+#transition_group {
+  flex-direction: column;
+}
+
+.list-enter-active, .list-leave-active {
+  transition: 0.5s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translate3d(40px, 0, 0);
+}
+.list-move {
+  opacity: 0.5;
+  transition: transform 0.5s;
 }
 </style>

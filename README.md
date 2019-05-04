@@ -1,5 +1,7 @@
 # demo-css-variables
 
+[GitHub Pages Site](https://talmand.github.io/demo-css-variables/)
+
 ## Info
 This project was built for a presentation during the VueJS Dallas meetup on April 16, 2019. This is a small project to show how CSS variables could be used in theming components.
 

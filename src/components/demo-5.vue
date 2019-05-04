@@ -15,7 +15,7 @@
           <input id="icon" :type="inputType('icon')" :value="notifications[editType].icon" v-model="notifications[editType].icon" @change="changeProperty" />
         </div>
       
-        <div v-for="(value, key) in notifications[editType].tokens" :key="key">
+        <div v-for="(value, key) in notifications[editType].tokens" :key="`label_${key}`">
           <label :for="key">{{ key }}</label>
           <input :id="key" :type="inputType(key)" :value="value" v-model="notifications[editType].tokens[key]" @input="changeProperty" />
         </div>
@@ -24,9 +24,9 @@
   </div>
 
   <transition-group name="list" tag="div" id="transition_group">
-    <div v-for="(key, value) in notifications" :key="value" class="edit-container">
-      <button class="edit-btn" @click="editNotify(value)"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
-      <Notify5 :ref="value" :type="key">this is {{ value }}</Notify5>
+    <div v-for="(value, key) in notifications" :key="`list_${key}`" class="edit-container">
+      <button class="edit-btn" @click="editNotify(key)"><font-awesome-icon icon="pencil-alt"></font-awesome-icon></button>
+      <Notify5 :ref="key" :type="value">this is {{ key }}</Notify5>
     </div>
   </transition-group>
 

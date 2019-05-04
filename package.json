@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "npm run build && push-dir --dir=dist --branch=gh-pages --cleanup"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -22,7 +21,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.12.0",
-    "push-dir": "^0.4.1",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-fontawesome": "^0.1.0",
     "vue-template-compiler": "^2.6.10"
